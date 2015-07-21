@@ -11,10 +11,10 @@ if ( ! isset( $content_width ) )
 // The proper way to enqueue GSAP script
 // wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer ); 
 //////////////////////////////////////////////////////////////////
-// function theme_gsap_script() {
-// 	wp_enqueue_script( 'gsap-js', 'http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenMax.min.js', array(), false, true );
-// }
-// add_action( 'wp_enqueue_scripts', 'theme_gsap_script' );
+function theme_gsap_script() {
+	wp_enqueue_script( 'gsap-js', 'http://cdnjs.cloudflare.com/ajax/libs/gsap/1.13.2/TweenMax.min.js', array(), false, true );
+}
+add_action( 'wp_enqueue_scripts', 'theme_gsap_script' );
 
 
 //////////////////////////////////////////////////////////////////
@@ -57,6 +57,7 @@ if ( !function_exists('solopine_theme_setup') ) {
 
 add_action( 'wp_enqueue_scripts','solopine_load_scripts' );
 
+// here new scripts
 function solopine_load_scripts() {
 
 	// Register scripts and styles
