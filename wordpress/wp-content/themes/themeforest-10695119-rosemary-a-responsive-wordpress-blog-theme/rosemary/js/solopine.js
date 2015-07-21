@@ -96,14 +96,20 @@ jQuery(document).ready(function($) {
 			timelineContent.staggerTo(contentTexts, 1.3, {autoAlpha: 1,y:0, ease: Ease.easeOut}, .1);
 
 
-			var body = $("body")
-			body.on("mousewheel",function(e){
+			// var body = $("body")
+			var body = document.querySelector("body")
+			body.addEventListener("mousewheel",scrollManager,false)
+			body.addEventListener("touchmove",scrollManager)
+
+
+			function scrollManager(e){
+				// e.preventDefault()
 				var mouseY = e.pageY
 				console.log(mouseY)
 				if (mouseY + 200 < content.offset().top) {
 					timelineContent.play()
 				}
-			})
+			}
 
       // after svg animation, start loop logo animation
       function completion(){
