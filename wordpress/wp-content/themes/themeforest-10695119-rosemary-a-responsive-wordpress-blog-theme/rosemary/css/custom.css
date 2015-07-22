@@ -1,0 +1,18 @@
+.meta-share a:hover .fa{
+  -webkit-transition-duration: 0.3s; 
+  -moz-transition-duration: 0.3s; 
+  -ms-transition-duration: 0.3s; 
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  transform: translateY(-15px);
+}
+
+.meta-share a .fa{
+
+  -webkit-transition-duration: 0.3s; 
+  -moz-transition-duration: 0.3s; 
+  -ms-transition-duration: 0.3s; 
+  -o-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  /*transform: translateY(-15px);*/
+}
