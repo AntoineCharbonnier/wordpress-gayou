@@ -99,7 +99,7 @@ jQuery(document).ready(function($) {
 			// var body = $("body")
 			var body = document.querySelector("body")
 			body.addEventListener("mousewheel",scrollManager,false)
-			body.addEventListener("touchmove",scrollManager)
+			body.addEventListener("touchmove",scrollManagerMobile)
 
 
 			function scrollManager(e){
@@ -110,7 +110,14 @@ jQuery(document).ready(function($) {
 					timelineContent.play()
 				}
 			}
-
+      function scrollManagerMobile(e){
+        // e.preventDefault()
+        var mouseY = e.pageY
+        console.log(mouseY,$(this).scrollTop()  )
+        if (mouseY + 200 < content.offset().top) {
+          timelineContent.play()
+        }
+      }
       // after svg animation, start loop logo animation
       function completion(){
         var t2 = -1
