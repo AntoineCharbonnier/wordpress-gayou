@@ -17,8 +17,19 @@ jQuery(document).ready(function($) {
       this.menuLi                 = $(".menu ul li ")
       this.searchInput            = $("#s")
       this.searchInputIconDesktop = $(".search-desktop")
+      // this.instaImg = $(".instagram-footer ul ")
+      this.insta1 = $("#instagram-footer .instagram-pics li:nth-child(1) img")
+      this.insta2 = $("#instagram-footer .instagram-pics li:nth-child(2) img")
+      this.insta3 = $("#instagram-footer .instagram-pics li:nth-child(3) img")
+      this.insta4 = $("#instagram-footer .instagram-pics li:nth-child(4) img")
+      this.insta5 = $("#instagram-footer .instagram-pics li:nth-child(5) img")
+      this.insta6 = $("#instagram-footer .instagram-pics li:nth-child(6) img")
+
+      this.instaTitle = $(".instagram-title")
       console.log("b")
 
+      console.log("insta")
+      console.log(this.insta1)
 
       // console.log(this.doc)
       // console.log(this.stroker)
@@ -57,6 +68,9 @@ jQuery(document).ready(function($) {
             // ////////////////////////
 
             var body = document.querySelector("body")
+            // var html = document.documentElement
+            // var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+            
             body.addEventListener("mousewheel",scrollManager,false)
             body.addEventListener("touchmove",scrollManagerMobile,false)
             function scrollManager(e){
@@ -85,7 +99,9 @@ jQuery(document).ready(function($) {
               }
             }
             console.log("d")
+            // var body = document.body  
           }
+
         }
       });
     },
@@ -146,6 +162,65 @@ jQuery(document).ready(function($) {
       })
     },
 
+    instaShow: function(){
+      document.getElementById("svg1").addEventListener("load", function() {
+        if(this.instaTitle){
+          var body = document.querySelector("body")
+          var html = document.documentElement
+          // var height = Math.min( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+          console.log(body.scrollHeight)
+          console.log(body.offsetHeight)
+          console.log(html.clientHeight)
+          console.log(html.scrollHeight)
+          console.log(html.offsetHeight)
+
+          var height = html.scrollHeight - html.clientHeight
+          
+          console.log("height",height)
+
+          var time = 0
+          var timeline = new TimelineMax({paused:true})
+          timeline.to(this.insta6,.5, {autoAlpha: 1,x: 0, ease: Sine.easeOut}, time += .9);
+          timeline.to(this.insta1,.5, {autoAlpha: 1,x: 0, ease: Sine.easeOut}, time );
+          timeline.to(this.insta5,.5, {autoAlpha: 1,x: 0, ease: Sine.easeOut}, time += .9);
+          timeline.to(this.insta2,.5, {autoAlpha: 1,x: 0, ease: Sine.easeOut}, time );
+          timeline.to(this.instaTitle,.9, {autoAlpha: 1,y: 0, ease: Ease.easeOut}, time);
+          timeline.to(this.insta4,.5, {autoAlpha: 1,x: 0, ease: Sine.easeOut}, time += .9);
+          timeline.to(this.insta3,.5, {autoAlpha: 1,x: 0, ease: Sine.easeOut}, time );
+          
+          body.addEventListener("mousewheel",scrollManagerInsta,false)
+          body.addEventListener("touchmove",scrollManagerMobileInsta,false)
+          function scrollManagerInsta(e){
+            // e.preventDefault()
+            var contentContexted = $("#content")
+            var mouseY = e.pageY
+            console.log(mouseY)
+            if(document.querySelector("body").classList.contains("home")){
+
+              if (mouseY  > height - 200) {
+              // if (true) {
+                timeline.play()
+                console.log("insta play")
+              }
+            }
+            else{
+              timeline.play()
+              console.log("insta play")
+            }
+          }
+          function scrollManagerMobileInsta(e){
+            // e.preventDefault()
+            var contentContexted = $("#content")
+            var mouseY = e.pageY
+            console.log(mouseY,$(this).scrollTop()  )
+            if (mouseY + 200 > height - 300) {
+              timeline.play()
+            }
+          }
+        }
+      });
+    },
+
 
     // ////////////////////////
     // INITIALISATION
@@ -178,6 +253,18 @@ jQuery(document).ready(function($) {
           TweenMax.set([this.stroker,this.bg],{ autoAlpha: 0});
           TweenMax.set(this.stroker, {strokeDasharray: "0px, 200px",stroke: "#000000"});
         }
+
+        if(this.instaTitle){
+          TweenMax.set(this.instaTitle,{autoAlpha:0, y: 200})
+          TweenMax.set(this.insta1,{autoAlpha:0, x: -200})
+          TweenMax.set(this.insta2,{autoAlpha:0, x: -200})
+          TweenMax.set(this.insta3,{autoAlpha:0, x: -200})
+          TweenMax.set(this.insta4,{autoAlpha:0, x: 200})
+          TweenMax.set(this.insta5,{autoAlpha:0, x: 200})
+          TweenMax.set(this.insta6,{autoAlpha:0, x: 200})
+        }
+
+
       })
     }
   }
@@ -192,5 +279,6 @@ jQuery(document).ready(function($) {
   app.logoShow()
   app.startShow()
   app.menuShow()
+  app.instaShow()
 
 });
